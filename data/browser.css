@@ -1,0 +1,36 @@
+/* Set minimal/maximal size in order to configure splitter behavior */
+#vertical-tabs-toolbox {
+  min-width: 100px;
+  max-width: 250px;
+}
+
+
+#vertical-tabs-toolbox toolbar {
+  /* Don't strech "others tabs" and "panorama" buttons */
+  
+  /* toolbar takes full browser height */
+  -moz-box-flex: 1;
+}
+
+/* Tabs list takes full toolbar height */
+#vertical-tabs-toolbox #tabbrowser-tabs {
+  -moz-box-flex: 1;
+}
+
+
+/* Remove top gradient on toolbox */
+#vertical-tabs-toolbox #TabsToolbar:not(:-moz-lwtheme),
+#vertical-tabs-toolbox #TabsToolbar[tabsontop="false"] {
+  background-image: none;
+  /*-moz-linear-gradient(transparent, transparent 50%,
+                                         rgba(0,0,0,.05) 90%, rgba(0,0,0,.1));*/
+}
+
+/* Use custom border image in order to display border 
+   on all sides but left */
+#vertical-tabs-toolbox .tabbrowser-tab,
+#vertical-tabs-toolbox .tabs-newtab-button {
+  -moz-border-image: url(tab.png) 4 5 3 6 / 4px 5px 3px 6px;
+  -moz-border-radius: 10px 8px 0 0;
+  -moz-box-flex:0 !important;
+}
