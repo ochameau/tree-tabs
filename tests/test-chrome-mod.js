@@ -13,9 +13,9 @@ exports.testChromeMod = function(test) {
       type: "navigator:browser",
       
       contentScript: 'new ' + function WorkerScope() {
-        document.documentElement.setAttribute("chrome-mod-ok","true");
+        document.documentElement.setAttribute("chrome-mod-ok", "true");
         self.on("message", function (data) {
-          if (data=="hi") postMessage("bye");
+          if (data=="hi") self.postMessage("bye");
         });
       },
       
@@ -24,7 +24,7 @@ exports.testChromeMod = function(test) {
           test.assertEqual(data, "bye", "get message from content script");
           // Search for this modified window
           for(let win in windowIterator()) {
-            if (win.document.documentElement.getAttribute("chrome-mod-ok")=="true")
+            if (win.document.documentElement.getAttribute("chrome-mod-ok") == "true")
               return test.done();
           }
           test.fail("Unable to found the modified window, with 'chrome-mod-ok' attribute");
